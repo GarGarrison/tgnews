@@ -1,0 +1,6 @@
+selectolax
+langdetect
+spacy==2.0.12
+pymorphy2==0.8
+nltk
+sklearn

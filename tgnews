@@ -1,0 +1,38 @@
+#!/usr/bin/env python3
+import sys,os
+sys.path.append("src")
+
+from languages import cmd_languages
+from news import cmd_news
+from categories import cmd_categories
+from threads import cmd_threads
+from top import cmd_top
+
+
+if __name__ == '__main__':
+    if len(sys.argv) != 3:
+        print("Usage: tgnews [languages|news|categories|threads|top] SOURCE_DIR")
+        sys.exit()
+
+    cmd = sys.argv[1]
+    src_dir = sys.argv[2]
+    if cmd not in ("languages", "news", "categories", "threads", "top"):
+        print("Usage: tgnews [languages|news|categories|threads|top] SOURCE_DIR")
+        sys.exit()
+    if not os.path.exists(src_dir):
+        print("Unable to open SOURCE_DIR. Directory {} not found".format(src_dir))
+        sys.exit()
+
+    if cmd == "languages":
+        result = cmd_languages(src_dir)
+    elif cmd == "news":
+        result = cmd_news(src_dir)
+    elif cmd == "categories":
+        result = cmd_categories(src_dir)
+    elif cmd == "threads":
+        result = cmd_threads(src_dir)
+    elif cmd == "top":
+        result = cmd_top(src_dir)
+
+    print(result)
+    sys.exit()
